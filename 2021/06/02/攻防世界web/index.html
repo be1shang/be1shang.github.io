@@ -6,12 +6,12 @@
   
   <title>攻防世界web | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="backup  打开场景要求我们找到index.php的备份文件，直接用御剑扫描网站后台：   发现index.php.bak备份文件名，直接在url后输入下载备份文件：   用记事本打开得到flag：   cookie拿到题目先抓包，得到提示cookie.php：   输入url再次得到提示：   查看response拿到flag：">
+  <meta name="description" content="backup  打开场景要求我们找到index.php的备份文件，直接用御剑扫描网站后台：   发现index.php.bak备份文件名，直接在url后输入下载备份文件：   用记事本打开得到flag：   cookie拿到题目先抓包，得到提示cookie.php：   输入url再次得到提示：   查看response拿到flag：   disabled_button方法一打开界面有一个不能按的">
 <meta property="og:type" content="article">
 <meta property="og:title" content="攻防世界web">
 <meta property="og:url" content="http://example.com/2021/06/02/%E6%94%BB%E9%98%B2%E4%B8%96%E7%95%8Cweb/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="backup  打开场景要求我们找到index.php的备份文件，直接用御剑扫描网站后台：   发现index.php.bak备份文件名，直接在url后输入下载备份文件：   用记事本打开得到flag：   cookie拿到题目先抓包，得到提示cookie.php：   输入url再次得到提示：   查看response拿到flag：">
+<meta property="og:description" content="backup  打开场景要求我们找到index.php的备份文件，直接用御剑扫描网站后台：   发现index.php.bak备份文件名，直接在url后输入下载备份文件：   用记事本打开得到flag：   cookie拿到题目先抓包，得到提示cookie.php：   输入url再次得到提示：   查看response拿到flag：   disabled_button方法一打开界面有一个不能按的">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://i.loli.net/2021/06/02/cgRP7EwsexFO13K.png">
 <meta property="og:image" content="https://i.loli.net/2021/06/02/jTsQVzy2iWGZ1dM.png">
@@ -20,8 +20,11 @@
 <meta property="og:image" content="https://i.loli.net/2021/06/05/wNmJDjXSApsKikB.png">
 <meta property="og:image" content="https://i.loli.net/2021/06/05/s3WAuLRb5yJowS6.png">
 <meta property="og:image" content="https://i.loli.net/2021/06/05/hN43Kyjiwefp1bY.png">
+<meta property="og:image" content="https://i.loli.net/2021/06/05/vH3B7iAxO4XondM.png">
+<meta property="og:image" content="https://i.loli.net/2021/06/05/E3oaLUfZRSP9btA.png">
+<meta property="og:image" content="https://i.loli.net/2021/06/05/lpjI9d4qmVKtDxy.png">
 <meta property="article:published_time" content="2021-06-02T11:55:55.000Z">
-<meta property="article:modified_time" content="2021-06-05T10:06:44.803Z">
+<meta property="article:modified_time" content="2021-06-05T12:15:00.110Z">
 <meta property="article:author" content="John Doe">
 <meta property="article:tag" content="CTF">
 <meta name="twitter:card" content="summary">
@@ -124,7 +127,15 @@
 <p>查看response拿到flag：</p>
 <img src="https://i.loli.net/2021/06/05/hN43Kyjiwefp1bY.png" alt="屏幕截图(19)" style="zoom:25%;" />
 
+<h2 id="disabled-button"><a href="#disabled-button" class="headerlink" title="disabled_button"></a>disabled_button</h2><h3 id="方法一"><a href="#方法一" class="headerlink" title="方法一"></a>方法一</h3><p>打开界面有一个不能按的按钮，习惯性地按下F12突然想起之前做过一道类似的题要在查看器里删除一些东西就可以按了，然后立马行动打开查看器看到disabled直接把它删除，果然有效拿到flag。</p>
+<img src="https://i.loli.net/2021/06/05/vH3B7iAxO4XondM.png" alt="屏幕截图(21)" style="zoom:67%;" />
 
+<img src="https://i.loli.net/2021/06/05/E3oaLUfZRSP9btA.png" alt="屏幕截图(20)" style="zoom: 25%;" />
+
+<h3 id="方法二"><a href="#方法二" class="headerlink" title="方法二"></a>方法二</h3><p>在网上学习了一下不同的方法依旧是在查看器里分析html代码，发现这里是用POST方法，突然回忆起最多的就是在Hackbar里的POST=啥啥啥的，再看name=auth，输入auth=flag尝试成功拿到flag。</p>
+<img src="https://i.loli.net/2021/06/05/lpjI9d4qmVKtDxy.png" alt="屏幕截图(22)" style="zoom:50%;" />
+
+<h2 id="weak-auth"><a href="#weak-auth" class="headerlink" title="weak_auth"></a>weak_auth</h2>
       
     </div>
     <footer class="article-footer">
