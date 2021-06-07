@@ -105,7 +105,7 @@
 <img src="https://i.loli.net/2021/06/02/KgSJ5kj4Z2fqoaX.png" alt="屏幕截图(12)" style="zoom:25%;" />
 
 <h1 id="cookie"><a href="#cookie" class="headerlink" title="cookie"></a>cookie</h1><p>拿到题目先抓包，得到提示cookie.php：</p>
-<img src="https://i.loli.net/2021/06/05/wNmJDjXSApsKikB.png" alt="屏幕截图(16)" style="zoom:67%;" />
+<img src="https://i.loli.net/2021/06/05/wNmJDjXSApsKikB.png" alt="屏幕截图(16)" style="zoom: 25%;" />
 
 <p>输入url再次得到提示：</p>
 <img src="https://i.loli.net/2021/06/05/s3WAuLRb5yJowS6.png" alt="屏幕截图(17)" style="zoom: 25%;" />
@@ -114,31 +114,31 @@
 <img src="https://i.loli.net/2021/06/05/hN43Kyjiwefp1bY.png" alt="屏幕截图(19)" style="zoom:25%;" />
 
 <h2 id="disabled-button"><a href="#disabled-button" class="headerlink" title="disabled_button"></a>disabled_button</h2><h3 id="方法一"><a href="#方法一" class="headerlink" title="方法一"></a>方法一</h3><p>打开界面有一个不能按的按钮，习惯性地按下F12突然想起之前做过一道类似的题要在查看器里删除一些东西就可以按了，然后立马行动打开查看器看到disabled直接把它删除，果然有效拿到flag。</p>
-<img src="https://i.loli.net/2021/06/05/vH3B7iAxO4XondM.png" alt="屏幕截图(21)" style="zoom:67%;" />
+<img src="https://i.loli.net/2021/06/05/vH3B7iAxO4XondM.png" alt="屏幕截图(21)" style="zoom: 25%;" />
 
 <img src="https://i.loli.net/2021/06/05/E3oaLUfZRSP9btA.png" alt="屏幕截图(20)" style="zoom: 25%;" />
 
 <h3 id="方法二"><a href="#方法二" class="headerlink" title="方法二"></a>方法二</h3><p>在网上学习了一下不同的方法依旧是在查看器里分析html代码，发现这里是用POST方法，突然回忆起最多的就是在Hackbar里的POST=啥啥啥的，再看name=auth，输入auth=flag尝试成功拿到flag。</p>
-<img src="https://i.loli.net/2021/06/05/lpjI9d4qmVKtDxy.png" alt="屏幕截图(22)" style="zoom:50%;" />
+<img src="https://i.loli.net/2021/06/05/lpjI9d4qmVKtDxy.png" alt="屏幕截图(22)" style="zoom: 25%;" />
 
 <h2 id="weak-auth"><a href="#weak-auth" class="headerlink" title="weak_auth"></a>weak_auth</h2><p>打开场景是一个登陆界面，然后随便输入用户名密码，提示用admin用户名登陆：</p>
-<img src="https://i.loli.net/2021/06/07/zwyegvMjxArQmi3.png" alt="屏幕截图(34)" style="zoom:80%;" />
+<img src="https://i.loli.net/2021/06/07/zwyegvMjxArQmi3.png" alt="屏幕截图(34)" style="zoom:25%;" />
 
 <p>然后用admin再随便输入密码显示密码错误，但此时再查看源码会发现多了一句提示：</p>
-<img src="https://i.loli.net/2021/06/07/HZp9AqmLt6X87ja.png" alt="屏幕截图(35)" style="zoom:75%;" />
+<img src="https://i.loli.net/2021/06/07/HZp9AqmLt6X87ja.png" alt="屏幕截图(35)" style="zoom:25%;" />
 
 <p>看到提示很容易想到用brup intruder破解密码抓包发送到intruder:</p>
-<img src="https://i.loli.net/2021/06/07/WOmDy96QBsZtLjb.png" alt="屏幕截图(36)" style="zoom:50%;" />
+<img src="https://i.loli.net/2021/06/07/WOmDy96QBsZtLjb.png" alt="屏幕截图(36)" style="zoom:25%;" />
 
 <p>由于用户名已经指定所以要变得参数只有一个攻击模式选默认的第一个就好，到了payload我是从网上找了别人的字典攻击的：</p>
-<img src="https://i.loli.net/2021/06/07/qsBtpm9Iuy7EnYW.png" alt="屏幕截图(37)" style="zoom:50%;" />
+<img src="https://i.loli.net/2021/06/07/qsBtpm9Iuy7EnYW.png" alt="屏幕截图(37)" style="zoom:25%;" />
 
-<img src="https://i.loli.net/2021/06/07/i6Aw1yPqXGNvfa3.png" alt="屏幕截图(38)" style="zoom:33%;" />
+<img src="https://i.loli.net/2021/06/07/i6Aw1yPqXGNvfa3.png" alt="屏幕截图(38)" style="zoom:25%;" />
 
 <p>然后开始攻击长度由高到低排序轻易找到437对应的密码123456，回场景登录拿到flag:</p>
-<img src="C:\Users\l\Pictures\Screenshots\屏幕截图(39).png" alt="屏幕截图(39)" style="zoom: 33%;" />
+<img src="C:\Users\l\Pictures\Screenshots\屏幕截图(39).png" alt="屏幕截图(39)" style="zoom: 25%;" />
 
-<img src="C:\Users\l\Pictures\Screenshots\屏幕截图(33).png" alt="屏幕截图(33)" style="zoom:75%;" />
+<img src="C:\Users\l\Pictures\Screenshots\屏幕截图(33).png" alt="屏幕截图(33)" style="zoom: 25%;" />
 
 
       
